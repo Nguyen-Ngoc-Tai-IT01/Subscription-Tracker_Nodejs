@@ -3,10 +3,14 @@ const http = require('http')
 const path = require('path')
 
 const morgan = require('morgan')
+require('dotenv').config()
 
 const indexouter  = require('./routes/index')
+const connectDB = require('./config/db')
 
 const app = express()
+
+connectDB()
 
 app.use(morgan('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
