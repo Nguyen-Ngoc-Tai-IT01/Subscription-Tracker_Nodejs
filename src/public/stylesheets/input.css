@@ -1,4 +1,2 @@
-/* src/public/stylesheets/input.css */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@source "../../views";

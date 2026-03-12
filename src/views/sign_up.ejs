@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký - SubTracker</title>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+  </head>
+
+  <body
+    class="bg-slate-50 font-sans antialiased text-gray-900 flex items-center justify-center min-h-screen py-8 px-4"
+  >
+    <div
+      class="relative mt-20 max-w-md w-full px-6 py-10 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100"
+    >
+      <!-- <div
+        class="absolute -top-[74px] left-1/2 -translate-x-1/2 pt-2 inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl shadow-lg"
+      >
+        <svg
+          class="w-8 h-8 text-white"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
+          ></path>
+        </svg> 
+      </div> -->
+
+      <div class="text-center mb-8">
+        <h2 class="text-3xl font-black text-gray-800 tracking-tight">
+          Tạo tài khoản mới
+        </h2>
+        <p class="text-gray-500 mt-2">
+          Bắt đầu quản lý chi tiêu của bạn ngay hôm nay
+        </p>
+      </div>
+
+      <form action="/sign_up" method="POST" class="space-y-5">
+        <div>
+          <label
+            for="name"
+            class="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+            >Họ và tên</label
+          >
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+            placeholder="Nguyễn Văn A"
+          />
+        </div>
+
+        <div>
+          <label
+            for="email"
+            class="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+            >Email của bạn</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+            placeholder="name@example.com"
+          />
+        </div>
+
+        <div>
+          <label
+            for="password"
+            class="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+            >Mật khẩu</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <div>
+          <label
+            for="confirmPassword"
+            class="block text-sm font-semibold text-gray-700 mb-2 ml-1"
+            >Xác nhận mật khẩu</label
+          >
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            required
+            class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 rounded-2xl shadow-lg shadow-indigo-200 hover:shadow-indigo-400 hover:scale-[1.02] active:scale-95 transition-all duration-200 mt-2"
+        >
+          Đăng ký miễn phí
+        </button>
+      </form>
+
+      <p class="text-center mt-6 text-sm text-gray-500">
+        Đã có tài khoản?
+        <a href="/sign_in" class="font-bold text-indigo-600 hover:underline"
+          >Đăng nhập ngay</a
+        >
+      </p>
+    </div>
+  </body>
+</html>
