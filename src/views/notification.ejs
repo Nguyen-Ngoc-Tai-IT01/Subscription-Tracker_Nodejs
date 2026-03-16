@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông báo - SubTracker</title>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+  </head>
+
+  <body class="bg-slate-50 font-sans antialiased text-gray-900 min-h-screen flex flex-col">
+    
+    <%- include('layouts/header') %>
+    
+    <main class="flex-1 max-w-2xl w-full mx-auto py-10 px-4 sm:px-6">
+      
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h1 class="text-3xl font-black text-slate-800 tracking-tight">Thông báo</h1>
+          <p class="text-slate-500 font-medium">Bạn có 2 thông báo mới chưa đọc</p>
+        </div>
+        <button class="text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors bg-indigo-50 px-4 py-2 rounded-xl">
+          Đánh dấu tất cả đã đọc
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        
+        <div class="group bg-white p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all cursor-pointer relative overflow-hidden">
+          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-amber-400"></div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-500 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <h3 class="font-bold text-slate-800">Netflix sắp đến ngày gia hạn</h3>
+                <span class="text-xs text-slate-400 font-medium">2 giờ trước</span>
+              </div>
+              <p class="text-slate-500 text-sm mt-1">Gói Premium của bạn sẽ tự động gia hạn vào ngày mai (15/03). Vui lòng kiểm tra số dư thẻ.</p>
+              <div class="mt-3 flex gap-2">
+                <span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-bold uppercase rounded-lg">Quan trọng</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group bg-white p-5 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md hover:border-indigo-100 transition-all cursor-pointer relative overflow-hidden">
+          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-emerald-400"></div>
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-500 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <h3 class="font-bold text-slate-800">Thanh toán Spotify thành công</h3>
+                <span class="text-xs text-slate-400 font-medium">Hôm qua</span>
+              </div>
+              <p class="text-slate-500 text-sm mt-1">Hệ thống đã ghi nhận thanh toán 59.000đ cho gói Spotify Family của bạn.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="group bg-slate-50 p-5 rounded-3xl border border-dashed border-slate-200 opacity-80 transition-all grayscale hover:grayscale-0">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-slate-200 flex items-center justify-center text-slate-500 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-start">
+                <h3 class="font-bold text-slate-600">Cập nhật hệ thống v2.1</h3>
+                <span class="text-xs text-slate-400 font-medium">3 ngày trước</span>
+              </div>
+              <p class="text-slate-500 text-sm mt-1">SubTracker vừa cập nhật tính năng biểu đồ chi tiêu mới. Khám phá ngay!</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href="/" class="inline-flex items-center text-sm font-bold text-slate-400 hover:text-indigo-600 transition-colors">
+          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+          Quay lại Bảng điều khiển
+        </a>
+      </div>
+
+    </main>
+
+  </body>
+</html>

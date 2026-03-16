@@ -11,26 +11,8 @@
     class="bg-slate-50 font-sans antialiased text-gray-900 flex items-center justify-center min-h-screen py-8 px-4"
   >
     <div
-      class="relative mt-20 max-w-md w-full px-6 py-10 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100"
+      class="relative mt-10 max-w-md w-full px-6 py-10 bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100"
     >
-      <!-- <div
-        class="absolute -top-[74px] left-1/2 -translate-x-1/2 pt-2 inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-2xl shadow-lg"
-      >
-        <svg
-          class="w-8 h-8 text-white"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"
-          ></path>
-        </svg> 
-      </div> -->
-
       <div class="text-center mb-8">
         <h2 class="text-3xl font-black text-gray-800 tracking-tight">
           Tạo tài khoản mới
@@ -41,6 +23,16 @@
       </div>
 
       <form action="/sign_up" method="POST" class="space-y-5">
+        <% if (locals.errorMessage) { %>
+      <div class="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-2xl text-red-600 shadow-sm">
+        <svg class="w-5 h-5 flex-shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path>
+        </svg>
+        <span class="font-semibold text-sm">
+          <%= locals.errorMessage %>
+        </span>
+      </div>
+      <% } %>
         <div>
           <label
             for="name"
@@ -50,10 +42,11 @@
           <input
             type="text"
             id="name"
-            name="name"
+            name="username"
             required
             class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
             placeholder="Nguyễn Văn A"
+            value="<%= locals.oldUsername %>"
           />
         </div>
 
@@ -70,6 +63,7 @@
             required
             class="w-full px-5 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all placeholder:text-slate-400"
             placeholder="name@example.com"
+            value="<%= locals.oldEmail %>"
           />
         </div>
 
