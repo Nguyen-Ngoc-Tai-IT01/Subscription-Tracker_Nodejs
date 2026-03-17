@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hồ sơ cá nhân - SubTracker</title>
+    <link rel="stylesheet" href="/stylesheets/output.css" />
+  </head>
+
+  <body class="bg-slate-50 font-sans antialiased text-gray-900 min-h-screen flex flex-col">
+    <%- include('layouts/header') %>
+
+    <main class="flex-1 py-12 px-4 sm:px-6" id="information">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-3xl font-black text-slate-800 tracking-tight mb-8 ml-2">Hồ sơ của tôi</h1>
+
+        <div class="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative">
+          <div class="h-32 sm:h-40 bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600"></div>
+
+          <div class="px-8 sm:px-12 pb-12">
+            <div class="flex justify-between items-end -mt-16 sm:-mt-20 mb-10">
+              <div class="w-32 h-32 sm:w-40 sm:h-40 bg-white rounded-3xl p-1.5 shadow-lg">
+                <div class="w-full h-full bg-indigo-50 rounded-[1.3rem] flex items-center justify-center border border-indigo-100">
+                  <svg class="w-16 h-16 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+              </div>
+              <button type="button" class="px-6 py-2.5 bg-slate-100 text-slate-700 font-bold rounded-2xl hover:bg-indigo-50 hover:text-indigo-600 transition-all shadow-sm cursor-pointer" onclick="showEditForm()">
+                Chỉnh sửa hồ sơ
+              </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-8 gap-x-12">
+              <div class="group">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Tên đăng nhập</p>
+                <p class="text-xl font-bold text-slate-800 border-b-2 border-transparent group-hover:border-indigo-100 pb-1 transition-all inline-block">
+                  <%= user.username %>
+                </p>
+              </div>
+
+              <div class="group">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Địa chỉ Email</p>
+                <p class="text-xl font-bold text-slate-800 border-b-2 border-transparent group-hover:border-indigo-100 pb-1 transition-all inline-block">
+                  <%= user.email %>
+                </p>
+              </div>
+
+              <div class="group">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Số điện thoại</p>
+                <p class="text-xl font-bold text-slate-800">
+                  <%= user.phone || "Chưa cập nhật" %>
+                </p>
+              </div>
+
+              <div class="group">
+                <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-1">Ngày sinh</p>
+                <p class="text-xl font-bold text-slate-800">
+                  <%= user.birthDate ? new Date(user.birthDate).toLocaleDateString('vi-VN') : "Chưa cập nhật" %>
+                </p>
+              </div>
+            </div>
+
+            <hr class="my-10 border-slate-100" />
+            <div>
+              <h3 class="text-xl font-extrabold text-slate-800 mb-6">Bảo mật tài khoản</h3>
+              <div class="flex items-center justify-between bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <div>
+                  <p class="font-bold text-slate-800">Mật khẩu</p>
+                  <p class="text-slate-500 text-sm mt-1">Đã đặt mật khẩu an toàn (••••••••)</p>
+                </div>
+                <button class="px-5 py-2 text-sm font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-xl transition-all">Đổi mật khẩu</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <main class="flex-1 flex items-center justify-center py-12 px-4 sm:px-6 hidden" id="edit_information">
+      <div class="max-w-2xl w-full px-8 sm:px-14 py-12 bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-slate-100">
+        <div class="flex items-center justify-between mb-10">
+          <div>
+            <h2 class="text-3xl font-black text-slate-800 tracking-tight">Cập nhật hồ sơ</h2>
+            <p class="text-slate-500 mt-2 font-medium">Bổ sung hoặc thay đổi thông tin cá nhân của bạn</p>
+          </div>
+        </div>
+
+        <form action="/profile/edit" method="POST" class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="group">
+              <label for="username" class="block text-sm font-bold text-slate-700 mb-2 ml-3">Tên đăng nhập</label>
+              <input type="text" id="username" name="username" required class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:border-indigo-500 transition-all" value="<%= user.username %>" />
+            </div>
+            <div class="group">
+              <label for="email" class="block text-sm font-bold text-slate-700 mb-2 ml-3">Email</label>
+              <input type="email" id="email" class="w-full px-8 py-4 bg-slate-100 border border-slate-200 rounded-3xl text-slate-500 cursor-not-allowed" value="<%= user.email %>" readonly />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="group">
+              <label for="phone" class="block text-sm font-bold text-slate-700 mb-2 ml-3">Số điện thoại</label>
+              <input type="tel" id="phone" name="phone" class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl" value="<%= user.phone || '' %>" />
+            </div>
+            <div class="group">
+              <label for="birthDate" class="block text-sm font-bold text-slate-700 mb-2 ml-3">Ngày sinh</label>
+              <% 
+                let formattedDate = user.birthDate ? new Date(user.birthDate).toISOString().split('T')[0] : ''; 
+              %>
+              <input type="date" id="birthDate" name="birthDate" class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl" value="<%= formattedDate %>" />
+            </div>
+          </div>
+
+          <div class="flex flex-col-reverse sm:flex-row items-center gap-4 mt-10 pt-6 border-t border-slate-100">
+            <button type="button" class="w-full sm:w-1/3 px-6 py-4 text-center font-bold text-slate-500 hover:bg-slate-100 rounded-3xl transition-all" onclick="showViewForm()">
+              Hủy bỏ
+            </button>
+            <button type="submit" class="w-full sm:w-2/3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 rounded-3xl shadow-xl hover:-translate-y-0.5 transition-all">
+              Lưu thay đổi
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+
+    <script>
+        const viewSection = document.getElementById('information');
+        const editSection = document.getElementById('edit_information');
+
+        function showEditForm() {
+            viewSection.classList.add('hidden');
+            editSection.classList.remove('hidden');
+        }
+
+        function showViewForm() {
+            viewSection.classList.remove('hidden');
+            editSection.classList.add('hidden');
+        }
+    </script>
+  </body>
+</html>

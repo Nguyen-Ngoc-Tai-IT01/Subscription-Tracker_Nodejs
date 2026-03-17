@@ -69,7 +69,9 @@ exports.loginUser = async (req, res) => {
 	req.session.user = {
 		id: user._id,
 		username: user.username,
-		email: user.email
+		email: user.email,
+		phone: user.phone,
+		birthDate: user.birthDate
 	}
 
     console.log("Đăng nhập thành công.", user.username);
@@ -83,3 +85,26 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
+
+// cập nhật 
+exports.updateProfile = async (req, res) => {
+	const {username, phone, birthDate} = req.body
+	try {
+		const userId = req.session.user.id
+
+		await User.findByIdAndUpdate(userId, {
+			username: username,
+			phone: phone,
+			birthDate: birthDate,
+		})
+
+		req.session.user.username = username
+		req.session.user.phone = phone
+		req.session.user.birthDate = birthDate
+
+		res.redirect('/profile')
+	} catch (error) {
+		console.log(error);
+        res.render('profile', { errorMessage: 'Không thể cập nhật hồ sơ' });
+	}
+}

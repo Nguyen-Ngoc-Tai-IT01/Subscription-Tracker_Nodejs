@@ -34,6 +34,13 @@ router.get('/notification', (req, res) => {
 	res.render('notification')
 })
 
+// thông tin cá nhân
+router.get('/profile', (req, res) => {
+	res.render('profile')
+})
+router.post('/profile/edit', userController.updateProfile)
+
+
 router.get('/', homeController.getHomePage)
 
 module.exports = router
