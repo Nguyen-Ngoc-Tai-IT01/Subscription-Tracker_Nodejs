@@ -7,79 +7,144 @@
     <link rel="stylesheet" href="/stylesheets/output.css" />
   </head>
 
-  <body class="bg-slate-50 font-sans antialiased text-gray-900 min-h-screen flex flex-col">
-    
+  <body
+    class="bg-slate-50 font-sans antialiased text-gray-900 min-h-screen flex flex-col"
+  >
     <%- include('layouts/header') %>
-    
+
     <main class="flex-1 flex items-center justify-center py-10 px-6">
-      
-      <div class="max-w-2xl w-full px-14 py-12 bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-slate-100">
-        
+      <div
+        class="max-w-2xl w-full px-14 py-12 bg-white rounded-[2rem] shadow-2xl shadow-slate-200/60 border border-slate-100"
+      >
         <div class="text-center mb-10">
-          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl shadow-xl shadow-indigo-200 mb-6 transform -rotate-3">
-            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-3xl shadow-xl shadow-indigo-200 mb-6 transform -rotate-3"
+          >
+            <svg
+              class="w-10 h-10 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+              ></path>
             </svg>
           </div>
-          
-          <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight leading-tight">Thêm gói đăng ký</h2>
-          <p class="text-slate-500 mt-3 font-medium">Nhập thông tin dịch vụ bạn đang sử dụng</p>
+
+          <h2
+            class="text-3xl font-extrabold text-slate-800 tracking-tight leading-tight"
+          >
+            Thêm gói đăng ký
+          </h2>
+          <p class="text-slate-500 mt-3 font-medium">
+            Nhập thông tin dịch vụ bạn đang sử dụng
+          </p>
         </div>
 
         <% if (typeof errorMessage !== 'undefined') { %>
-          <div class="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-sm font-semibold">
-            <%= errorMessage %>
-          </div>
+        <div
+          class="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-sm font-semibold"
+        >
+          <%= errorMessage %>
+        </div>
         <% } %>
 
-        <form action="/services/add" method="POST" class="space-y-6">
-          
+        <form action="/add-service" method="POST" class="space-y-6">
           <div class="group">
-            <label for="serviceName" class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600">Tên dịch vụ</label>
-            <input type="text" id="serviceName" name="serviceName" required
+            <label
+              for="serviceName"
+              class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600"
+              >Tên dịch vụ</label
+            >
+            <input
+              type="text"
+              id="serviceName"
+              name="serviceName"
+              required
               class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 placeholder:text-slate-400"
-              placeholder="VD: Netflix, Spotify, Adobe..." />
+              placeholder="VD: Netflix, Spotify, Adobe..."
+			  value="<%= locals.oldServiceName %>"
+            />
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
             <div class="group">
-              <label for="amount" class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600">Số tiền (VNĐ)</label>
-              <input type="number" id="amount" name="amount" required min="0"
+              <label
+                for="amount"
+                class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600"
+                >Số tiền (VNĐ)</label
+              >
+              <input
+                type="number"
+                id="price"
+                name="price"
+                required
+                min="0"
                 class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 placeholder:text-slate-400"
-                placeholder="VD: 99000" />
+                placeholder="VD: 99000"
+              />
             </div>
 
             <div class="group">
-              <label for="cycle" class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600">Chu kỳ</label>
+              <label
+                for="cycle"
+                class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600"
+                >Chu kỳ</label
+              >
               <div class="relative">
-                <select id="cycle" name="cycle" required
-                  class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 appearance-none cursor-pointer text-slate-700 font-medium">
+                <select
+                  id="billingCycle"
+                  name="billingCycle"
+                  required
+                  class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 appearance-none cursor-pointer text-slate-700 font-medium"
+                >
                   <option value="monthly">Hàng tháng</option>
                   <option value="yearly">Hàng năm</option>
                 </select>
-                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-500">
-                  <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-5 text-slate-500"
+                >
+                  <svg
+                    class="fill-current h-4 w-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="group">
-            <label for="nextPaymentDate" class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600">Ngày thanh toán kế tiếp</label>
-            <input type="date" id="nextPaymentDate" name="nextPaymentDate" required
-              class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 text-slate-700 font-medium cursor-pointer" />
+            <label
+              for="nextPaymentDate"
+              class="block text-sm font-bold text-slate-700 mb-2 ml-3 transition-colors group-focus-within:text-indigo-600"
+              >Ngày thanh toán kế tiếp</label
+            >
+            <input
+              type="date"
+              id="nextPaymentDate"
+              name="nextPaymentDate"
+              required
+              class="w-full px-8 py-4 bg-slate-50 border border-slate-200 rounded-3xl focus:outline-none focus:ring-4 focus:ring-indigo-500/10 focus:border-indigo-500 focus:bg-white transition-all duration-300 text-slate-700 font-medium cursor-pointer"
+            />
           </div>
 
-          <button type="submit"
-            class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 rounded-3xl shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:translate-y-[-2px] active:scale-95 transition-all duration-200 mt-8 text-lg">
+          <button
+            type="submit"
+            class="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 rounded-3xl shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:translate-y-[-2px] active:scale-95 transition-all duration-200 mt-8 text-lg"
+          >
             Lưu thông tin dịch vụ
           </button>
-
         </form>
       </div>
-
     </main>
   </body>
 </html>

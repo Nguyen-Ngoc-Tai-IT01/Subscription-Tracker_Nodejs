@@ -6,98 +6,210 @@
     <title>Trang chủ - SubTracker</title>
     <link rel="stylesheet" href="/stylesheets/output.css" />
   </head>
-  <body class="bg-slate-50 font-sans antialiased text-gray-900">
+
+  <body
+    class="bg-slate-50 font-sans antialiased text-gray-900 min-h-screen flex flex-col"
+  >
     <%- include('layouts/header') %>
-	<% if(!locals.user) { %>
-	<main class="flex-1">
-        <section class="relative py-20 overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center">
-                    <span class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-indigo-600 uppercase bg-indigo-50 rounded-full">
-                        Giải pháp quản lý chi tiêu số 1
-                    </span>
-                    <h1 class="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tight">
-                        Kiểm soát mọi <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">gói đăng ký</span> <br class="hidden md:block"> trong tầm tay bạn.
-                    </h1>
-                    <p class="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 mb-10 leading-relaxed font-medium">
-                        Đừng để những khoản phí gia hạn tự động làm bạn bất ngờ. SubTracker giúp bạn theo dõi, nhắc lịch và tối ưu hóa mọi chi tiêu dịch vụ hàng tháng.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                        <a href="/sign_up" class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-2xl shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-1 transition-all duration-300 text-lg w-full sm:w-auto text-center">
-                            Bắt đầu miễn phí ngay
-                        </a>
-                        <a href="#features" class="px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-all text-lg w-full sm:w-auto text-center">
-                            Tìm hiểu thêm
-                        </a>
-                    </div>
-                </div>
+
+    <% if(!locals.user) { %>
+    <main class="flex-1">
+      <section class="relative py-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="text-center">
+            <span
+              class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-indigo-600 uppercase bg-indigo-50 rounded-full"
+            >
+              Giải pháp quản lý chi tiêu số 1
+            </span>
+            <h1
+              class="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tight"
+            >
+              Kiểm soát mọi
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
+                >gói đăng ký</span
+              >
+              <br class="hidden md:block" />
+              trong tầm tay bạn.
+            </h1>
+            <p
+              class="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 mb-10 leading-relaxed font-medium"
+            >
+              Đừng để những khoản phí gia hạn tự động làm bạn bất ngờ.
+              SubTracker giúp bạn theo dõi, nhắc lịch và tối ưu hóa mọi chi tiêu
+              dịch vụ hàng tháng.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row justify-center items-center gap-4"
+            >
+              <a
+                href="/sign_up"
+                class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-2xl shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-1 transition-all duration-300 text-lg w-full sm:w-auto text-center"
+              >
+                Bắt đầu miễn phí ngay
+              </a>
+              <a
+                href="#features"
+                class="px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-all text-lg w-full sm:w-auto text-center"
+              >
+                Tìm hiểu thêm
+              </a>
             </div>
-            
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 pointer-events-none">
-                <div class="absolute top-10 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-                <div class="absolute bottom-10 right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse transition-delay-2000"></div>
+          </div>
+        </div>
+
+        <div
+          class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 pointer-events-none"
+        >
+          <div
+            class="absolute top-10 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
+          ></div>
+          <div
+            class="absolute bottom-10 right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse transition-delay-2000"
+          ></div>
+        </div>
+      </section>
+
+      <section id="features" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">
+              Tại sao nên dùng SubTracker?
+            </h2>
+            <div
+              class="h-1.5 w-20 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"
+            ></div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div
+              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group"
+            >
+              <div
+                class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-8 h-8 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 mb-3">
+                Nhắc nhở thông minh
+              </h3>
+              <p class="text-slate-500 leading-relaxed font-medium">
+                Nhận thông báo trước khi gói dịch vụ của bạn tự động gia hạn 1-2
+                ngày.
+              </p>
             </div>
-        </section>
 
-        <section id="features" class="py-20 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Tại sao nên dùng SubTracker?</h2>
-                    <div class="h-1.5 w-20 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"></div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                    <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group">
-                        <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-3">Nhắc nhở thông minh</h3>
-                        <p class="text-slate-500 leading-relaxed font-medium">Nhận thông báo trước khi gói dịch vụ của bạn tự động gia hạn 1-2 ngày.</p>
-                    </div>
-
-                    <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group border-indigo-100 bg-indigo-50/30">
-                        <div class="w-14 h-14 bg-indigo-600 rounded-2xl shadow-lg flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform">
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-3 text-indigo-700">Thống kê trực quan</h3>
-                        <p class="text-slate-500 leading-relaxed font-medium text-slate-600">Biết chính xác bạn đang chi bao nhiêu tiền mỗi tháng cho các dịch vụ số.</p>
-                    </div>
-
-                    <div class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group">
-                        <div class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800 mb-3">Bảo mật tuyệt đối</h3>
-                        <p class="text-slate-500 leading-relaxed font-medium">Dữ liệu của bạn được mã hóa và bảo vệ an toàn với công nghệ mới nhất.</p>
-                    </div>
-                </div>
+            <div
+              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group border-indigo-100 bg-indigo-50/30"
+            >
+              <div
+                class="w-14 h-14 bg-indigo-600 rounded-2xl shadow-lg flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform"
+              >
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 mb-3 text-indigo-700">
+                Thống kê trực quan
+              </h3>
+              <p
+                class="text-slate-500 leading-relaxed font-medium text-slate-600"
+              >
+                Biết chính xác bạn đang chi bao nhiêu tiền mỗi tháng cho các
+                dịch vụ số.
+              </p>
             </div>
-        </section>
 
-        <section class="py-20">
-            <div class="max-w-5xl mx-auto px-4">
-                <div class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[3rem] p-12 text-center shadow-2xl shadow-indigo-200">
-                    <h2 class="text-3xl md:text-5xl font-black text-white mb-6">Sẵn sàng để quản lý <br> chi tiêu tốt hơn?</h2>
-                    <p class="text-indigo-100 mb-10 text-lg font-medium">Tham gia cùng hơn 1,000 người dùng đang tiết kiệm tiền mỗi ngày.</p>
-                    <a href="/sign_up" class="px-10 py-5 bg-white text-indigo-600 font-black rounded-2xl shadow-xl hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all text-lg inline-block">
-                        Tạo tài khoản ngay bây giờ
-                    </a>
-                </div>
+            <div
+              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group"
+            >
+              <div
+                class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
+              >
+                <svg
+                  class="w-8 h-8 text-indigo-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 mb-3">
+                Bảo mật tuyệt đối
+              </h3>
+              <p class="text-slate-500 leading-relaxed font-medium">
+                Dữ liệu của bạn được mã hóa và bảo vệ an toàn với công nghệ mới
+                nhất.
+              </p>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20">
+        <div class="max-w-5xl mx-auto px-4">
+          <div
+            class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[3rem] p-12 text-center shadow-2xl shadow-indigo-200"
+          >
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-6">
+              Sẵn sàng để quản lý <br />
+              chi tiêu tốt hơn?
+            </h2>
+            <p class="text-indigo-100 mb-10 text-lg font-medium">
+              Tham gia cùng hơn 1,000 người dùng đang tiết kiệm tiền mỗi ngày.
+            </p>
+            <a
+              href="/sign_up"
+              class="px-10 py-5 bg-white text-indigo-600 font-black rounded-2xl shadow-xl hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all text-lg inline-block"
+            >
+              Tạo tài khoản ngay bây giờ
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer class="bg-white border-t border-slate-100 py-12">
-        <div class="text-center text-slate-400 font-medium text-sm">
-            &copy; 2026 SubTracker. Thiết kế bởi Nguyễn Ngọc Tài.
-        </div>
+    <footer class="bg-white border-t border-slate-100 py-12 mt-auto">
+      <div class="text-center text-slate-400 font-medium text-sm">
+        &copy; 2026 SubTracker. Thiết kế bởi Nguyễn Ngọc Tài.
+      </div>
     </footer>
-	<% } else { %>
+
+    <% } else { %>
     <main
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up"
+      class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up"
     >
       <div
-        class="bg-indigo-600 rounded-3xl p-8 sm:p-10 mb-8 shadow-xl shadow-indigo-200 relative overflow-hidden"
+        class="bg-indigo-600 rounded-[2rem] p-8 sm:p-10 mb-10 shadow-xl shadow-indigo-200 relative overflow-hidden flex flex-col sm:flex-row justify-between items-center gap-6"
       >
         <div
           class="absolute top-0 right-0 -mt-16 -mr-16 w-64 h-64 bg-white opacity-10 rounded-full blur-2xl"
@@ -106,78 +218,465 @@
           class="absolute bottom-0 left-0 -mb-16 -ml-16 w-48 h-48 bg-purple-500 opacity-20 rounded-full blur-xl"
         ></div>
 
-        <div class="relative z-10">
-          <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
-            Chào mừng trở lại! 👋
+        <div class="relative z-10 w-full sm:w-2/3">
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+            Chào mừng trở lại, <%= user.username %>! 👋
           </h1>
-          <p class="text-indigo-100 text-lg max-w-2xl">
+          <p class="text-indigo-100 text-lg">
             Cùng kiểm tra xem tháng này chúng ta cần thanh toán những dịch vụ
             nào nhé. Kiểm soát chi tiêu thông minh hơn mỗi ngày.
           </p>
-          <div class="mt-6">
-            <a
-              class="bg-white text-indigo-600 px-6 py-3 rounded-full font-bold shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200 inline-flex items-center"
-			  href="/add-service"
-            >
-              <svg
-                class="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 4v16m8-8H4"
-                ></path>
+        </div>
 
-              </svg>
-              Thêm dịch vụ mới
-            </a>
-          </div>
+        <div class="relative z-10 w-full sm:w-auto">
+          <a
+            href="/add-service"
+            class="bg-white text-indigo-600 px-8 py-4 rounded-2xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto flex items-center justify-center"
+          >
+            <svg
+              class="w-6 h-6 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4v16m8-8H4"
+              ></path>
+            </svg>
+            Thêm dịch vụ mới
+          </a>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+          class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-100 transition-all"
         >
           <h3
-            class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1"
+            class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2"
           >
             Tổng chi phí tháng này
           </h3>
-          <div class="text-3xl font-black text-gray-800">1,250,000 ₫</div>
+          <div class="text-4xl font-black text-slate-800">1,250,000 ₫</div>
         </div>
 
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+          class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-100 transition-all"
         >
           <h3
-            class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-1"
+            class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2"
           >
             Dịch vụ đang hoạt động
           </h3>
-          <div class="text-3xl font-black text-gray-800">
-            08 <span class="text-base font-normal text-gray-400">gói</span>
+          <div class="text-4xl font-black text-slate-800">
+            08 <span class="text-xl font-bold text-slate-400">gói</span>
           </div>
         </div>
 
         <div
-          class="bg-white p-6 rounded-2xl shadow-sm border border-red-100 bg-red-50 hover:shadow-md transition-shadow"
+          class="bg-red-50 p-8 rounded-[2rem] shadow-sm border border-red-100 hover:shadow-lg transition-all relative overflow-hidden"
         >
           <h3
-            class="text-red-500 text-sm font-semibold uppercase tracking-wider mb-1"
+            class="text-red-500 text-sm font-bold uppercase tracking-wider mb-2"
           >
             Sắp hết hạn (3 ngày tới)
           </h3>
-          <div class="text-3xl font-black text-red-600 animate-pulse">
-            02 <span class="text-base font-normal text-red-400">gói</span>
+          <div class="text-4xl font-black text-red-600 animate-pulse">
+            02 <span class="text-xl font-bold text-red-400">gói</span>
           </div>
+          <svg
+            class="absolute -right-4 -bottom-4 w-32 h-32 text-red-500 opacity-5"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="text-2xl font-black text-slate-800 mb-6 ml-2">
+        Danh sách đăng ký
+      </h2>
+
+      <div
+        class="bg-white rounded-[2rem] shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative"
+      >
+        <div class="overflow-x-auto pb-4">
+          <table class="w-full text-left border-collapse min-w-[800px]">
+            <thead class="bg-slate-50 border-b border-slate-100">
+              <tr>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider"
+                >
+                  Tên dịch vụ
+                </th>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider"
+                >
+                  Số tiền
+                </th>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider"
+                >
+                  Chu kỳ
+                </th>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider"
+                >
+                  Ngày thanh toán
+                </th>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider text-center"
+                >
+                  Mã QR
+                </th>
+                <th
+                  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider text-center"
+                >
+                  Trạng thái
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              <% if (typeof services === 'undefined' || services.length === 0) { %>
+              <tr>
+                <td colspan="6" class="py-16 text-center">
+                  <div
+                    class="inline-flex items-center justify-center w-20 h-20 bg-slate-50 rounded-full mb-4"
+                  >
+                    <svg
+                      class="w-10 h-10 text-slate-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-slate-700 mb-1">
+                    Chưa có dịch vụ nào
+                  </h3>
+                  <p class="text-slate-500 font-medium">
+                    Bạn chưa theo dõi gói đăng ký nào. Hãy thêm dịch vụ mới nhé!
+                  </p>
+                </td>
+              </tr>
+              <% } else { %>
+              <% services.forEach(function(item) { %>
+              <tr
+                class="hover:bg-slate-50 transition-colors group border-b border-slate-100 last:border-none"
+              >
+                <td class="py-5 px-8 flex items-center gap-4">
+                  <div
+                    class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-600 flex items-center justify-center font-black text-xl shadow-inner border border-indigo-50 group-hover:scale-110 transition-transform duration-300"
+                  >
+                    <%= item.serviceName.charAt(0).toUpperCase() %>
+                  </div>
+                  <span
+                    class="font-extrabold text-slate-800 text-lg group-hover:text-indigo-600 transition-colors"
+                  >
+                    <%= item.serviceName %>
+                  </span>
+                </td>
+
+                <td class="py-5 px-8 font-bold text-slate-600">
+                  <span
+                    class="bg-slate-100 px-3 py-1.5 rounded-xl text-slate-700"
+                  >
+                    <%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(item.price) %>
+                  </span>
+                </td>
+
+                <td class="py-5 px-8">
+                  <% if (item.billingCycle === 'yearly') { %>
+                  <span
+                    class="px-3 py-1.5 text-xs font-bold text-purple-700 bg-purple-100 rounded-xl border border-purple-200"
+                    >Hàng năm</span
+                  >
+                  <% } else { %>
+                  <span
+                    class="px-3 py-1.5 text-xs font-bold text-indigo-700 bg-indigo-100 rounded-xl border border-indigo-200"
+                    >Hàng tháng</span
+                  >
+                  <% } %>
+                </td>
+
+                <td class="py-5 px-8">
+                  <div
+                    class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 font-bold"
+                  >
+                    <svg
+                      class="w-4 h-4 text-slate-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <%= item.nextPaymentDate ? new Date(item.nextPaymentDate).toLocaleDateString('vi-VN') : 'Chưa cập nhật' %>
+                  </div>
+                </td>
+
+                <td class="py-5 px-8 text-center">
+                  <button
+                    type="button"
+					onclick="openImageModal('<%= item.imageUrl || '/images/default-bill.jpg' %>', '<%= item.serviceName %>')"
+                    class="p-2.5 text-indigo-500 bg-indigo-50 hover:bg-indigo-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm border border-indigo-100 group-hover:border-transparent"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                  </button>
+                </td>
+
+                <td
+                  class="py-5 px-8 text-center"
+                  id="status-col-<%= item._id %>"
+                >
+                  <% if (item.isPaid) { %>
+                  <button
+                    disabled
+                    class="px-4 py-2 bg-emerald-100 text-emerald-700 font-bold text-xs rounded-xl border border-emerald-200 cursor-default flex items-center gap-1.5 mx-auto"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2.5"
+                        d="M5 13l4 4L19 7"
+                      ></path>
+                    </svg>
+                    Đã thanh toán
+                  </button>
+                  <% } else { %>
+                  <button
+                    type="button"
+                    onclick="
+                      openConfirmModal(
+                        '<%= item._id %>',
+                        '<%= item.serviceName %>',
+                      )
+                    "
+                    class="px-4 py-2 bg-rose-50 text-rose-600 font-bold text-xs rounded-xl border border-rose-200 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5 mx-auto"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      ></path>
+                    </svg>
+                    Chưa thanh toán
+                  </button>
+                  <% } %>
+                </td>
+              </tr>
+              <% }); %>
+              <% } %>
+            </tbody>
+          </table>
         </div>
       </div>
     </main>
-	<% } %>
+    <% } %>
   </body>
+  <div
+    id="imageModal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300"
+  >
+    <div
+      class="bg-white rounded-[2rem] p-4 sm:p-6 max-w-2xl w-full shadow-2xl transform scale-95 transition-transform duration-300"
+      id="imageModalContent"
+    >
+      <div class="flex justify-between items-center mb-4 px-2">
+        <h3 class="text-xl font-bold text-slate-800" id="modalImageTitle">
+          Hình ảnh hóa đơn
+        </h3>
+        <button
+          onclick="closeModals()"
+          class="p-2 bg-slate-100 hover:bg-rose-100 hover:text-rose-600 rounded-full transition-colors"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div
+        class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-100 min-h-[300px] flex items-center justify-center"
+      >
+        <img
+          id="modalImgTag"
+          src=""
+          alt="Hóa đơn"
+          class="max-w-full max-h-[70vh] object-contain"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="confirmModal"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300"
+  >
+    <div
+      class="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl text-center transform scale-95 transition-transform duration-300"
+      id="confirmModalContent"
+    >
+      <div
+        class="w-20 h-20 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6"
+      >
+        <svg
+          class="w-10 h-10"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-black text-slate-800 mb-2">
+        Xác nhận thanh toán?
+      </h3>
+      <p class="text-slate-500 font-medium mb-8">
+        Bạn xác nhận đã thanh toán thành công cho dịch vụ
+        <strong id="confirmServiceName" class="text-slate-700"></strong> chứ?
+      </p>
+
+      <div class="flex gap-4">
+        <button
+          onclick="closeModals()"
+          class="flex-1 py-3.5 font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-all"
+        >
+          Hủy bỏ
+        </button>
+        <button
+          onclick="submitPayment()"
+          class="flex-1 py-3.5 font-bold text-white bg-indigo-600 hover:bg-indigo-700 rounded-2xl transition-all shadow-lg shadow-indigo-200"
+        >
+          Xác nhận
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentServiceId = null;
+
+    // Hàm mở xem ảnh
+    function openImageModal(imgUrl, serviceName) {
+      document.getElementById("modalImgTag").src = imgUrl;
+      document.getElementById("modalImageTitle").innerText =
+        "Hóa đơn: " + serviceName;
+      showModal("imageModal", "imageModalContent");
+    }
+
+    // Hàm mở hỏi xác nhận
+    function openConfirmModal(id, serviceName) {
+      currentServiceId = id;
+      document.getElementById("confirmServiceName").innerText = serviceName;
+      showModal("confirmModal", "confirmModalContent");
+    }
+
+    // Hàm chung để show Modal có hiệu ứng
+    function showModal(modalId, contentId) {
+      const modal = document.getElementById(modalId);
+      const content = document.getElementById(contentId);
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+
+      // Timeout nhỏ để CSS Transition kịp chạy hiệu ứng hiện dần
+      setTimeout(() => {
+        modal.classList.remove("opacity-0");
+        content.classList.remove("scale-95");
+      }, 10);
+    }
+
+    // Hàm đóng tất cả Modal
+    function closeModals() {
+      ["imageModal", "confirmModal"].forEach((id) => {
+        const modal = document.getElementById(id);
+        const content = document.getElementById(id + "Content");
+
+        modal.classList.add("opacity-0");
+        content.classList.add("scale-95");
+
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          modal.classList.remove("flex");
+        }, 300); // Đợi CSS chạy xong mới ẩn thẻ div
+      });
+    }
+
+    // Hàm Xử lý khi bấm nút "Xác nhận"
+    function submitPayment() {
+      // Gửi lệnh lên Backend của bạn bằng Fetch API (AJAX)
+      // Ví dụ: fetch(`/api/services/${currentServiceId}/pay`, { method: 'POST' })...
+
+      // SAU KHI BACKEND TRẢ VỀ THÀNH CÔNG: Cập nhật giao diện ngay lập tức mà không cần F5
+      const statusTd = document.getElementById(
+        `status-col-${currentServiceId}`,
+      );
+      statusTd.innerHTML = `
+            <button disabled class="px-4 py-2 bg-emerald-100 text-emerald-700 font-bold text-xs rounded-xl border border-emerald-200 cursor-default flex items-center gap-1.5 mx-auto animate-pulse">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+                Đã thanh toán
+            </button>
+        `;
+
+      closeModals();
+    }
+  </script>
 </html>

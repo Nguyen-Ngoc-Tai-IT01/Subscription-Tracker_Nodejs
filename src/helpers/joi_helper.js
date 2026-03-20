@@ -12,10 +12,13 @@ const user_add = joi.object({
     birthDate: joi.date().allow('').optional()
 })
 const service_add = joi.object({
-	name: joi.string().require().min(0).max(100),
-	price: joi.number().integer(),
-	cycle: joi.string().min(0).max(100),
-	payment_date: joi.date()
+	serviceName: joi.string().required().min(0).max(100),
+	price: joi.number().integer().required(),
+	billingCycle: joi.string().min(0).max(100).required(),
+	nextPaymentDate: joi.date().required(),
+	image: joi.string(),
+	status: joi.string().required()
+	
 })
 
 

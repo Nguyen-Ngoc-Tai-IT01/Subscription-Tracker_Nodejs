@@ -1,4 +1,4 @@
-require('dotenv').config(); // Đưa lên đầu tiên
+require('dotenv').config(); 
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
@@ -6,22 +6,22 @@ const morgan = require('morgan');
 const indexouter = require('./routes/index');
 const connectDB = require('./config/db');
 
-const app = express(); // KHỞI TẠO APP TRƯỚC KHI SỬ DỤNG
+const app = express(); // khởi tạo
 
-// Kết nối Database
+// kết nối database
 connectDB();
 
-// Cấu hình View Engine
+// cấu hình view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Middleware cơ bản
+// middleware cơ bản
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// CẤU HÌNH SESSION (Phải đặt sau khi khởi tạo app và trước route)
+// cấu hình session
 app.use(session({
     secret: 'ma-hoa-123',
     resave: false,
@@ -32,13 +32,13 @@ app.use(session({
     }
 }));
 
-// Middleware để truyền biến user vào tất cả file EJS
+// middleware để truyền biến user vào tất cả file EJS
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     next();
 });
 
-// Routes
+// routes
 app.use('/', indexouter);
 
 module.exports = app;
