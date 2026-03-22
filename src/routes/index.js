@@ -26,10 +26,26 @@ router.get("/sign_up", (req, res) => {
 
 router.post("/sign_up", userController.createUser);
 
+// đăng xuất
+router.post('/logout', userController.logoutUser)
+
 // dịch vụ mới
 router.get("/add-service", (req, res) => {
   res.render("add-service");
 });
+
+// chỉnh sửa trạng thái khi đã thanh toán
+router.post('/service/pay/:id', serviceController.payService)
+
+// xóa dịch vụ
+router.delete('/service/:id', serviceController.deleteService)
+
+
+// điều hướng upload image
+const upload = require('../helpers/multer_helper')
+
+router.post('/add-service', upload.single('QRCode'), serviceController.createService)
+
 
 router.post("/add-service", serviceController.createService);
 

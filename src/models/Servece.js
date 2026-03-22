@@ -28,7 +28,7 @@ const serviceSchema = new mongoose.Schema({
 		type: Date,
 		required: true
 	},
-	image:{
+	QRCode:{
 		type: String,
 		default: ''
 	},

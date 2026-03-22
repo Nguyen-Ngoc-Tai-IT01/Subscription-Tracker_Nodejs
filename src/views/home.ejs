@@ -13,197 +13,7 @@
     <%- include('layouts/header') %>
 
     <% if(!locals.user) { %>
-    <main class="flex-1">
-      <section class="relative py-20 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div class="text-center">
-            <span
-              class="inline-block px-4 py-1.5 mb-6 text-sm font-bold tracking-widest text-indigo-600 uppercase bg-indigo-50 rounded-full"
-            >
-              Giải pháp quản lý chi tiêu số 1
-            </span>
-            <h1
-              class="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tight"
-            >
-              Kiểm soát mọi
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600"
-                >gói đăng ký</span
-              >
-              <br class="hidden md:block" />
-              trong tầm tay bạn.
-            </h1>
-            <p
-              class="max-w-2xl mx-auto text-lg md:text-xl text-slate-500 mb-10 leading-relaxed font-medium"
-            >
-              Đừng để những khoản phí gia hạn tự động làm bạn bất ngờ.
-              SubTracker giúp bạn theo dõi, nhắc lịch và tối ưu hóa mọi chi tiêu
-              dịch vụ hàng tháng.
-            </p>
-            <div
-              class="flex flex-col sm:flex-row justify-center items-center gap-4"
-            >
-              <a
-                href="/sign_up"
-                class="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-2xl shadow-xl shadow-indigo-200 hover:shadow-indigo-300 hover:-translate-y-1 transition-all duration-300 text-lg w-full sm:w-auto text-center"
-              >
-                Bắt đầu miễn phí ngay
-              </a>
-              <a
-                href="#features"
-                class="px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl shadow-sm border border-slate-200 hover:bg-slate-50 transition-all text-lg w-full sm:w-auto text-center"
-              >
-                Tìm hiểu thêm
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-0 pointer-events-none"
-        >
-          <div
-            class="absolute top-10 left-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"
-          ></div>
-          <div
-            class="absolute bottom-10 right-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse transition-delay-2000"
-          ></div>
-        </div>
-      </section>
-
-      <section id="features" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-              Tại sao nên dùng SubTracker?
-            </h2>
-            <div
-              class="h-1.5 w-20 bg-gradient-to-r from-indigo-600 to-purple-600 mx-auto rounded-full"
-            ></div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div
-              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group"
-            >
-              <div
-                class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-              >
-                <svg
-                  class="w-8 h-8 text-indigo-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3">
-                Nhắc nhở thông minh
-              </h3>
-              <p class="text-slate-500 leading-relaxed font-medium">
-                Nhận thông báo trước khi gói dịch vụ của bạn tự động gia hạn 1-2
-                ngày.
-              </p>
-            </div>
-
-            <div
-              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group border-indigo-100 bg-indigo-50/30"
-            >
-              <div
-                class="w-14 h-14 bg-indigo-600 rounded-2xl shadow-lg flex items-center justify-center mb-6 group-hover:rotate-6 transition-transform"
-              >
-                <svg
-                  class="w-8 h-8 text-white"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3 text-indigo-700">
-                Thống kê trực quan
-              </h3>
-              <p
-                class="text-slate-500 leading-relaxed font-medium text-slate-600"
-              >
-                Biết chính xác bạn đang chi bao nhiêu tiền mỗi tháng cho các
-                dịch vụ số.
-              </p>
-            </div>
-
-            <div
-              class="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 hover:shadow-xl hover:shadow-indigo-50 transition-all duration-300 group"
-            >
-              <div
-                class="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform"
-              >
-                <svg
-                  class="w-8 h-8 text-indigo-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                  ></path>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-slate-800 mb-3">
-                Bảo mật tuyệt đối
-              </h3>
-              <p class="text-slate-500 leading-relaxed font-medium">
-                Dữ liệu của bạn được mã hóa và bảo vệ an toàn với công nghệ mới
-                nhất.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="py-20">
-        <div class="max-w-5xl mx-auto px-4">
-          <div
-            class="bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[3rem] p-12 text-center shadow-2xl shadow-indigo-200"
-          >
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-6">
-              Sẵn sàng để quản lý <br />
-              chi tiêu tốt hơn?
-            </h2>
-            <p class="text-indigo-100 mb-10 text-lg font-medium">
-              Tham gia cùng hơn 1,000 người dùng đang tiết kiệm tiền mỗi ngày.
-            </p>
-            <a
-              href="/sign_up"
-              class="px-10 py-5 bg-white text-indigo-600 font-black rounded-2xl shadow-xl hover:bg-slate-50 hover:scale-105 active:scale-95 transition-all text-lg inline-block"
-            >
-              Tạo tài khoản ngay bây giờ
-            </a>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-white border-t border-slate-100 py-12 mt-auto">
-      <div class="text-center text-slate-400 font-medium text-sm">
-        &copy; 2026 SubTracker. Thiết kế bởi Nguyễn Ngọc Tài.
-      </div>
-    </footer>
-
+    <%- include('introduce') %>
     <% } else { %>
     <main
       class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-fade-in-up"
@@ -342,6 +152,11 @@
                 >
                   Trạng thái
                 </th>
+				<th 
+				  class="py-5 px-8 text-xs font-bold text-slate-400 uppercase tracking-wider text-center w-20"
+				>
+				  Xóa
+				</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100">
@@ -376,6 +191,7 @@
               <% } else { %>
               <% services.forEach(function(item) { %>
               <tr
+			    id="service-row-<%= item._id %>"
                 class="hover:bg-slate-50 transition-colors group border-b border-slate-100 last:border-none"
               >
                 <td class="py-5 px-8 flex items-center gap-4">
@@ -436,10 +252,10 @@
 
                 <td class="py-5 px-8 text-center">
                   <button
-                    type="button"
-					onclick="openImageModal('<%= item.imageUrl || '/images/default-bill.jpg' %>', '<%= item.serviceName %>')"
-                    class="p-2.5 text-indigo-500 bg-indigo-50 hover:bg-indigo-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm border border-indigo-100 group-hover:border-transparent"
-                  >
+  					type="button"
+  					onclick="openImageModal(`<%- item.QRCode ? '/images/' + item.QRCode : '/images/default-bill.jpg' %>`, `<%= item.serviceName %>`)"
+  					class="p-2.5 text-indigo-500 bg-indigo-50 hover:bg-indigo-600 hover:text-white rounded-xl transition-all duration-300 shadow-sm border border-indigo-100 group-hover:border-transparent"
+					>
                     <svg
                       class="w-5 h-5"
                       fill="none"
@@ -460,7 +276,7 @@
                   class="py-5 px-8 text-center"
                   id="status-col-<%= item._id %>"
                 >
-                  <% if (item.isPaid) { %>
+                  <% if (item.status === 'paid') { %>
                   <button
                     disabled
                     class="px-4 py-2 bg-emerald-100 text-emerald-700 font-bold text-xs rounded-xl border border-emerald-200 cursor-default flex items-center gap-1.5 mx-auto"
@@ -508,6 +324,17 @@
                   </button>
                   <% } %>
                 </td>
+				<td class="py-5 px-8 text-center">
+            	<button 
+                  type="button" 
+                  onclick="openDeleteModal('<%= item._id %>', '<%= item.serviceName %>')"
+                  class="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all duration-300 focus:outline-none"
+                  title="Xóa dịch vụ">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                  </svg>
+                </button>
+          		</td>
               </tr>
               <% }); %>
               <% } %>
@@ -518,6 +345,8 @@
     </main>
     <% } %>
   </body>
+
+  <!-- Hiển thị hình ảnh QR -->
   <div
     id="imageModal"
     class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300"
@@ -561,7 +390,7 @@
       </div>
     </div>
   </div>
-
+  <!-- Hiển thị xác nhận đã thanh toán -->
   <div
     id="confirmModal"
     class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300"
@@ -611,72 +440,122 @@
       </div>
     </div>
   </div>
+  <!-- Hiển thị xác nhận xóa dịch vụ -->
+  <div id="deleteModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 opacity-0 transition-opacity duration-300">
+    <div class="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl text-center transform scale-95 transition-transform duration-300" id="deleteModalContent">
+        <div class="w-20 h-20 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+        </div>
+        <h3 class="text-2xl font-black text-slate-800 mb-2">Bạn chắc chắn muốn xóa?</h3>
+        <p class="text-slate-500 font-medium mb-8">Dữ liệu về gói <strong id="deleteServiceName" class="text-rose-600"></strong> sẽ bị xóa vĩnh viễn và không thể khôi phục.</p>
+        
+        <div class="flex gap-4">
+            <button onclick="closeModals()" class="flex-1 py-3.5 font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-2xl transition-all">Hủy bỏ</button>
+            <button onclick="submitDelete()" class="flex-1 py-3.5 font-bold text-white bg-rose-600 hover:bg-rose-700 rounded-2xl transition-all shadow-lg shadow-rose-200">Đồng ý xóa</button>
+        </div>
+    </div>
+  </div>
 
-  <script>
-    let currentServiceId = null;
 
-    // Hàm mở xem ảnh
-    function openImageModal(imgUrl, serviceName) {
-      document.getElementById("modalImgTag").src = imgUrl;
-      document.getElementById("modalImageTitle").innerText =
-        "Hóa đơn: " + serviceName;
-      showModal("imageModal", "imageModalContent");
-    }
+	<script>
+		// lưu id
+		let currentServiceId = null;
+		let currentDeleteId = null;
 
-    // Hàm mở hỏi xác nhận
-    function openConfirmModal(id, serviceName) {
-      currentServiceId = id;
-      document.getElementById("confirmServiceName").innerText = serviceName;
-      showModal("confirmModal", "confirmModalContent");
-    }
+		
+		// đóng mở modal
+		function showModal(modalId, contentId) {
+			const modal = document.getElementById(modalId);
+			const content = document.getElementById(contentId);
+		
+			modal.classList.remove("hidden");
+			modal.classList.add("flex");
 
-    // Hàm chung để show Modal có hiệu ứng
-    function showModal(modalId, contentId) {
-      const modal = document.getElementById(modalId);
-      const content = document.getElementById(contentId);
-      modal.classList.remove("hidden");
-      modal.classList.add("flex");
+			setTimeout(() => {
+				modal.classList.remove("opacity-0");
+				content.classList.remove("scale-95");
+			}, 10);
+		}
 
-      // Timeout nhỏ để CSS Transition kịp chạy hiệu ứng hiện dần
-      setTimeout(() => {
-        modal.classList.remove("opacity-0");
-        content.classList.remove("scale-95");
-      }, 10);
-    }
+		function closeModals() {
+			['imageModal', 'confirmModal', 'deleteModal'].forEach(id => {
+				const modal = document.getElementById(id);
+				if (!modal) return; 
+				
+				const content = document.getElementById(id + 'Content');
+				modal.classList.add('opacity-0');
+				content.classList.add('scale-95');
+				
+				setTimeout(() => {
+					modal.classList.add('hidden');
+					modal.classList.remove('flex');
+				}, 300);
+			});
+		}
 
-    // Hàm đóng tất cả Modal
-    function closeModals() {
-      ["imageModal", "confirmModal"].forEach((id) => {
-        const modal = document.getElementById(id);
-        const content = document.getElementById(id + "Content");
+		
+		// xem QR
+		function openImageModal(imgUrl, serviceName) {
+			document.getElementById("modalImgTag").src = imgUrl;
+			document.getElementById("modalImageTitle").innerText = "Hóa đơn: " + serviceName;
+			showModal("imageModal", "imageModalContent");
+		}
 
-        modal.classList.add("opacity-0");
-        content.classList.add("scale-95");
+		// xác nhận thanh toán
+		function openConfirmModal(id, serviceName) {
+			currentServiceId = id;
+			document.getElementById("confirmServiceName").innerText = serviceName;
+			showModal("confirmModal", "confirmModalContent");
+		}
 
-        setTimeout(() => {
-          modal.classList.add("hidden");
-          modal.classList.remove("flex");
-        }, 300); // Đợi CSS chạy xong mới ẩn thẻ div
-      });
-    }
+		async function submitPayment() {
+			try {
+				const response = await fetch(`/service/pay/${currentServiceId}`, {
+					method: "POST",
+					headers: { 'Content-Type': 'application/json' }
+				});
 
-    // Hàm Xử lý khi bấm nút "Xác nhận"
-    function submitPayment() {
-      // Gửi lệnh lên Backend của bạn bằng Fetch API (AJAX)
-      // Ví dụ: fetch(`/api/services/${currentServiceId}/pay`, { method: 'POST' })...
+				if (response.ok) {
+					closeModals();
+					window.location.reload(); 
+				} else {
+					alert("Có lỗi xảy ra khi cập nhật Database!");
+				}
+			} catch (error) {
+				console.error("Lỗi:", error);
+				alert("Không thể kết nối đến máy chủ.");
+			}
+		}
 
-      // SAU KHI BACKEND TRẢ VỀ THÀNH CÔNG: Cập nhật giao diện ngay lập tức mà không cần F5
-      const statusTd = document.getElementById(
-        `status-col-${currentServiceId}`,
-      );
-      statusTd.innerHTML = `
-            <button disabled class="px-4 py-2 bg-emerald-100 text-emerald-700 font-bold text-xs rounded-xl border border-emerald-200 cursor-default flex items-center gap-1.5 mx-auto animate-pulse">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                Đã thanh toán
-            </button>
-        `;
+		// xóa
+		function openDeleteModal(id, serviceName) {
+			currentDeleteId = id;
+			document.getElementById('deleteServiceName').innerText = serviceName;
+			showModal('deleteModal', 'deleteModalContent');
+		}
 
-      closeModals();
-    }
-  </script>
+		async function submitDelete() {
+			try {
+				const response = await fetch(`/service/${currentDeleteId}`, { 
+					method: 'DELETE' 
+				});
+
+				if (response.ok) {
+					const row = document.getElementById(`service-row-${currentDeleteId}`);
+					if (row) {
+						row.classList.add('opacity-0', '-translate-x-full'); 
+						setTimeout(() => {
+							row.remove(); 
+						}, 300);
+					}
+					closeModals(); 
+				} else {
+					alert("Có lỗi xảy ra khi xóa trong Database!");
+				}
+			} catch (error) {
+				console.error("Lỗi:", error);
+				alert("Không thể kết nối đến máy chủ.");
+			}
+		}
+	</script>
 </html>

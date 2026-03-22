@@ -108,3 +108,18 @@ exports.updateProfile = async (req, res) => {
         res.render('profile', { errorMessage: 'Không thể cập nhật hồ sơ' });
 	}
 }
+
+// đăng xuất
+exports.logoutUser = (req, res) => {
+	// hủy session hiện tại
+	req.session.destroy((err) => {
+		if(err){
+			console.log("Lỗi khi đăng xuất, ", err)
+			return res.redirect("/")
+		}
+
+		res.clearCookie('connect.sid')
+
+		res.redirect('/')
+	})
+}
