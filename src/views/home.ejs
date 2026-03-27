@@ -62,16 +62,23 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-        <div
-          class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-100 transition-all"
-        >
-          <h3
-            class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2"
-          >
-            Tổng chi phí tháng này
-          </h3>
-          <div class="text-4xl font-black text-slate-800">1,250,000 ₫</div>
-        </div>
+        <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-100 transition-all">
+  			<h3 class="text-slate-400 text-sm font-bold uppercase tracking-wider mb-2">
+    			Tổng chi phí tháng này
+  			</h3>
+  
+  			<div class="text-4xl font-black text-slate-800">
+    			<% 
+					// 1. Máy tính làm toán âm thầm (Không có dấu =)
+					let totalExpense = 0; 
+					services.forEach(function(item) { 
+						totalExpense += item.price; 
+					}); 
+        		%>
+        
+        		<%= new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalExpense) %>
+  			</div>
+		</div>
 
         <div
           class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-100 transition-all"
@@ -82,7 +89,8 @@
             Dịch vụ đang hoạt động
           </h3>
           <div class="text-4xl font-black text-slate-800">
-            08 <span class="text-xl font-bold text-slate-400">gói</span>
+			<%= services.length %>
+          <span class="text-xl font-bold text-slate-400">gói</span>
           </div>
         </div>
 
@@ -95,7 +103,28 @@
             Sắp hết hạn (3 ngày tới)
           </h3>
           <div class="text-4xl font-black text-red-600 animate-pulse">
-            02 <span class="text-xl font-bold text-red-400">gói</span>
+            <% 
+				let expiringCount = 0;
+				
+				const today = new Date();
+				today.setHours(0, 0, 0, 0); 
+
+				const next3Days = new Date(today);
+				next3Days.setDate(today.getDate() + 3);
+
+				services.forEach(function(item) { 
+					if (item.status === 'unpaid' && item.nextPaymentDate) {
+						const payDate = new Date(item.nextPaymentDate);
+						
+						if (payDate <= next3Days) {
+							expiringCount++;
+						}
+					}
+				}); 
+        	%>
+        
+        	<%= expiringCount %>
+			<span class="text-xl font-bold text-red-400">gói</span>
           </div>
           <svg
             class="absolute -right-4 -bottom-4 w-32 h-32 text-red-500 opacity-5"
