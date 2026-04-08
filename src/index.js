@@ -3,7 +3,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const morgan = require('morgan');
-const indexouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const connectDB = require('./config/db');
 
 const app = express(); // khởi tạo
@@ -40,6 +40,6 @@ app.use((req, res, next) => {
 
 
 // routes
-app.use('/', indexouter);
+app.use('/', indexRouter);
 
 module.exports = app;

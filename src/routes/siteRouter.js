@@ -1,6 +1,20 @@
-// const express = require('express')
-// const siteRouter = express.Router()
+const express = require("express");
+const router = express.Router();
+const serviceController = require("../controllers/serviceController");
+const upload = require('../helpers/multer_helper');
 
-// siteRouter.get('/')
+// Trang chủ
+router.get("/", serviceController.displayService);
 
-// module.exports = siteRouter
+// Thêm dịch vụ
+router.get("/add-service", (req, res) => res.render("add-service"));
+router.post('/add-service', upload.single('QRCode'), serviceController.createService);
+
+// Thanh toán và Xóa
+router.post('/service/pay/:id', serviceController.payService);
+router.delete('/service/:id', serviceController.deleteService);
+
+// Thông báo
+router.get("/notification", (req, res) => res.render("notification"));
+
+module.exports = router; // Đóng gói mang ra ngoài
