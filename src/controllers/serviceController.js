@@ -4,12 +4,12 @@ const path = require("path");
 
 // gọi service
 const paymentService = require("../services/paymentService");
-const deleteService = require('../services/deleteService')
+const deleteService = require('../services/deleteService');
+const displayService = require('../services/displayService')
 
-// tạo mới
+
 exports.createService = async (req, res) => {
-  const { serviceName, price, billingCycle, nextPaymentDate, status } =
-    req.body;
+  const { serviceName, price, billingCycle, nextPaymentDate, status } = req.body;
 
   try {
     // lấy tên file từ multer
@@ -30,9 +30,7 @@ exports.createService = async (req, res) => {
 
     // lưu dữ liệu
     await newService.save();
-
     console.log("Saved successfully", newService);
-
     res.redirect("/");
   } catch (error) {
     console.log("Error: ", error);
@@ -43,72 +41,84 @@ exports.createService = async (req, res) => {
   }
 };
 
-// hiển thị dịch vụ đã lưu
+
 exports.displayService = async (req, res) => {
     try {
-        if (!req.session || !req.session.user) {
-            return res.render("home");
-        }
+        if (!req.session || !req.session.user) return res.render("home");
 
         const userId = req.session.user.id;
-
-        // Phân trang
+        const searchQuery = req.query.search || "";
         const page = parseInt(req.query.page) || 1;
-        const limit = 5; 
-        const skip = (page - 1) * limit;
+        const limit = 5;
 
-        const allServices = await Service.find({ userId: userId });
+        const data = await displayService.processDisplay(userId, searchQuery, page, limit);
 
-        // Tính Tổng tiền tất cả các gói của User
-        const globalTotalExpense = allServices.reduce((sum, item) => sum + item.price, 0);
-
-        // Đếm tổng số lượng gói
-        const totalServices = allServices.length;
-
-        // Đếm tổng số gói sắp hết hạn (trên toàn bộ danh sách)
-        let expiringCount = 0;
-        const today = new Date(); today.setHours(0, 0, 0, 0);
-        const next3Days = new Date(today); next3Days.setDate(today.getDate() + 3);
-
-        allServices.forEach(item => {
-            if (item.status === 'unpaid' && item.nextPaymentDate) {
-                const payDate = new Date(item.nextPaymentDate);
-                if (payDate <= next3Days) expiringCount++;
-            }
-        });
-
-        // Tính số lượng trang hiển thị
-        const totalPages = Math.ceil(totalServices / limit); 
-
-        const myService = await Service.find({ userId: userId })
-            .sort({ createdAt: -1 })
-            .skip(skip)   
-            .limit(limit); 
-
-        // Gửi kết quả cuối cùng ra giao diện
         res.render("home", {
             user: req.session.user,
-            services: myService,           
-            currentPage: page,     
-            totalPages: totalPages,
-            globalTotalExpense: globalTotalExpense, 
-            totalServices: totalServices,           
-            expiringCount: expiringCount           
+            searchQuery: searchQuery,
+            currentPage: page,
+            totalPages: Math.ceil(data.totalMatching / limit),
+            
+            // lấy dữ liệu
+            services: data.services,
+            globalTotalExpense: data.globalTotalExpense,
+            totalServices: data.totalServices,
+            expiringCount: data.expiringCount,
         });
     } catch (error) {
-        console.log("Lỗi tải trang chủ: ", error);
-        res.status(500).send("Đã xảy ra lỗi khi tải dữ liệu");
+        console.log(error);
+        res.status(500).send("Lỗi tải dữ liệu");
     }
 };
 
-// thay đổi trạng thái
+
+exports.getServiceDetail = async (req, res) => {
+    try {
+        const serviceId = req.params.id;
+        const service = await Service.findById(serviceId);
+
+        if (!service) {
+            return res.status(404).send("Không tìm thấy dịch vụ này!");
+        }
+
+        res.render("service-detail", {
+            user: req.session.user,
+            service: service
+        });
+    } catch (error) {
+        console.log("Lỗi xem chi tiết: ", error);
+        res.status(500).send("Lỗi hệ thống");
+    }
+};
+
+
+exports.updateService = async (req, res) => {
+    try {
+        const serviceId = req.params.id;
+        const { serviceName, price } = req.body;
+        const updatedService = await Service.findByIdAndUpdate(
+            serviceId, 
+            { serviceName: serviceName, price: price }, 
+            { new: true } 
+        );
+
+        if (!updatedService) {
+            return res.status(404).json({ message: 'Không tìm thấy dịch vụ để cập nhật.' });
+        }
+
+        console.log(`Đã cập nhật thành công: ${updatedService.serviceName}`);
+        res.status(200).json({ message: 'Cập nhật thành công' });
+    } catch (error) {
+        console.log("Lỗi khi cập nhật dịch vụ: ", error);
+        res.status(500).json({ message: "Lỗi server khi cập nhật" });
+    }
+};
+
+
 exports.payService = async (req, res) => {
   try {
     const serviceId = req.params.id;
     await paymentService.processPayment(serviceId);
-    //console.log(`Đã thanh toán thành công: ${service.serviceName}`)
-
-    // trả về để F5
     res.status(200).json({ message: "Thành công" });
   } catch (error) {
     console.log("Lỗi khi gia hạn: ", error);
@@ -116,12 +126,11 @@ exports.payService = async (req, res) => {
   }
 };
 
-// xóa dịch vụ
+
 exports.deleteService = async (req, res) => {
   try {
     const serviceId = req.params.id;
-    await deleteService.processDelete(serviceId)
-
+    await deleteService.processDelete(serviceId);
     res.status(200).json({ message: "Xóa thành công" });
   } catch (error) {
     console.log("Lỗi khi xóa dịch vụ: ", error);

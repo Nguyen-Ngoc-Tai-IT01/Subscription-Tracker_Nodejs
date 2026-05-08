@@ -18,3 +18,7 @@ router.delete('/service/:id', serviceController.deleteService);
 router.get("/notification", (req, res) => res.render("notification"));
 
 module.exports = router; // Đóng gói mang ra ngoài
+
+// Xem chi tiết một dịch vụ dựa trên ID
+router.get('/service/:id', serviceController.getServiceDetail);
+router.put('/service/edit/:id', serviceController.updateService);

@@ -6,40 +6,45 @@ const morgan = require('morgan');
 const indexRouter = require('./routes/index');
 const connectDB = require('./config/db');
 
-const app = express(); // khởi tạo
+const MongoDBStore = require('connect-mongodb-session')(session);
 
+const app = express(); 
 // kết nối database
 connectDB();
-
 // cấu hình view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 // middleware cơ bản
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const store = new MongoDBStore({
+    uri: 'mongodb://127.0.0.1:27017/subtracker_db',
+    collection: 'sessions' 
+});
+
+store.on('error', function(error) {
+    console.log("Lỗi kho lưu trữ Session:", error);
+});
 // cấu hình session
 app.use(session({
     secret: 'ma-hoa-123',
     resave: false,
     saveUninitialized: true,
+    store: store, 
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: false
+        maxAge: 24 * 60 * 60 * 1000, 
+        secure: false 
     }
 }));
 
-// middleware để truyền biến user vào tất cả file EJS
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;
     next();
 });
 
-
-// routes
 app.use('/', indexRouter);
 
 module.exports = app;
