@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const serviceController = require("../controllers/serviceController");
+const homeController = require('../controllers/homeController');
 const upload = require('../helpers/multer_helper');
 
 // Trang chủ
-router.get("/", serviceController.displayService);
+router.get("/", homeController.displayService);
 
 // Thêm dịch vụ
 router.get("/add-service", (req, res) => res.render("add-service"));

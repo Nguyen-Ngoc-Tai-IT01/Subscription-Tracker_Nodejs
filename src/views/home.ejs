@@ -114,10 +114,24 @@
               </tr>
               <% } else { %>
               <% services.forEach(function(item) { %>
+              <% 
+                // Kiểm tra xem dịch vụ này có sắp hết hạn không (trong 3 ngày)
+                let isExpiring = false;
+                if (item.status === 'unpaid' && item.nextPaymentDate) {
+                    const today = new Date(); today.setHours(0, 0, 0, 0);
+                    const next3Days = new Date(today); next3Days.setDate(today.getDate() + 3);
+                    const payDate = new Date(item.nextPaymentDate);
+                    if (payDate <= next3Days) isExpiring = true;
+                }
+              %>
+
               <tr 
                 id="service-row-<%= item._id %>" 
                 onclick="window.location.href='/service/<%= item._id %>'"
-                class="hover:bg-slate-50 transition-colors group border-b border-slate-100 last:border-none cursor-pointer"
+                class="
+                  transition-colors group border-b last:border-none cursor-pointer
+                  <%= isExpiring ? 'bg-red-50 border-red-200 animate-pulse hover:bg-red-100' : 'hover:bg-slate-50 border-slate-100' %>
+                "
               >
                 
                 <td class="py-5 px-8 flex items-center gap-4">
