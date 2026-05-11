@@ -1,88 +1,68 @@
 const User = require("../models/User");
-
-// đăng kí
+const authService = require("../services/authService"); 
+// đk
 exports.createUser = async (req, res) => {
   const { username, email, password, confirmPassword } = req.body;
-  const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,30}$/;
 
   if (!passwordRegex.test(password)) {
     return res.render("sign_up", {
-      errorMessage:
-        "Mật khẩu phải từ 8-30 ký tự, bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt (@$!%*?&).",
-      oldUsername: username,
-      oldEmail: email,
+      errorMessage: "Mật khẩu phải từ 8-30 ký tự, bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 số và 1 ký tự đặc biệt.",
+      oldUsername: username, oldEmail: email,
     });
   }
   if (password !== confirmPassword) {
     return res.render("sign_up", {
-      errorMessage: "Mật khẩu xác nhận không khớp. Vui lòng kiểm tra lại.",
-      oldUsername: username,
-      oldEmail: email,
+      errorMessage: "Mật khẩu xác nhận không khớp.",
+      oldUsername: username, oldEmail: email,
     });
   }
+
+  // phần auth service
   try {
-    const newUser = new User({
-      username: username,
-      email: email,
-      password: password,
-    });
-
-    // lưu dữ liệu vào mongoDB
-    await newUser.save();
-
-    console.log("Saved successfully", newUser);
-
-    res.redirect("/");
+    const newUser = await authService.processRegister(username, email, password);
+    console.log("Tạo tài khoản thành công:", newUser.username);
+    res.redirect("/sign_in");
   } catch (error) {
-    console.log("Error: ", error);
-    res.render("sign_up", {
-      errorMessage: "Đăng ký thất bại vui lòng kiểm tra lại thông tin",
-      oldUsername: username,
-      oldEmail: email,
-    });
+    // bắt lỗi
+    if (error.message === "EMAIL_EXIST") {
+        return res.render("sign_up", {
+            errorMessage: "Email này đã tồn tại trong hệ thống!",
+            oldUsername: username, oldEmail: email,
+        });
+    }
+    console.log("Lỗi hệ thống:", error);
+    res.render("sign_up", { errorMessage: "Đăng ký thất bại!", oldUsername: username, oldEmail: email });
   }
 };
 
-// đăng nhập
+// đn
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email: email });
 
-    if (!user) {
-      return res.render("sign_in", {
-        errorMessage: "Email chưa được đăng ký!.",
-        oldEmail: email,
-      });
+	const user = await authService.processLogin(email, password);
+
+    // lấy thẻ session
+    req.session.user = {
+        id: user._id.toString(),
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        birthDate: user.birthDate
     }
-
-    if (user.password !== password) {
-      return res.render("sign_in", {
-        errorMessage: "Mật khẩu không chính xác!",
-        oldEmail: email,
-      });
-    }
-
-	// dùng để lấy user name
-	req.session.user = {
-		id: user._id.toString(),
-		username: user.username,
-		email: user.email,
-		phone: user.phone,
-		birthDate: user.birthDate
-	}
 
     console.log("Đăng nhập thành công.", user.username);
-
     res.redirect("/");
+
   } catch (error) {
-    console.log("Error: ", error);
-    res.render("sign_in", {
-      errorMessage: "Lỗi hệ thống, vui lòng thử lại sau!",
-      oldEmail: email,
-    });
+	//bắt lỗi
+    let message = "Lỗi hệ thống, vui lòng thử lại sau!";
+    if (error.message === "USER_NOT_FOUND") message = "Email chưa được đăng ký!";
+    if (error.message === "WRONG_PASSWORD") message = "Mật khẩu không chính xác!";
+
+    res.render("sign_in", { errorMessage: message, oldEmail: email });
   }
 };
 

@@ -118,58 +118,53 @@
       </div>
     </div>
 
-    <script>
+   <script>
+        // Hàm viết tắt siêu gọn
+        const $ = id => document.getElementById(id);
         let currentEditId = null;
 
         function showModal(modalId, contentId) {
-            const modal = document.getElementById(modalId);
-            const content = document.getElementById(contentId);
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
+            $(modalId).classList.replace("hidden", "flex");
             setTimeout(() => {
-                modal.classList.remove("opacity-0");
-                content.classList.remove("scale-95");
+                $(modalId).classList.remove("opacity-0");
+                $(contentId).classList.remove("scale-95");
             }, 10);
         }
 
         function closeModals() {
-            const modal = document.getElementById('editModal');
-            if (!modal) return; 
-            const content = document.getElementById('editModalContent');
-            modal.classList.add('opacity-0');
-            content.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }, 300);
+            if (!$('editModal')) return; 
+            $('editModal').classList.add('opacity-0');
+            $('editModalContent').classList.add('scale-95');
+            // Dùng replace đổi class nhanh hơn
+            setTimeout(() => $('editModal').classList.replace('flex', 'hidden'), 300);
         }
 
         function openEditModal(id, currentName, currentPrice) {
             currentEditId = id;
-            document.getElementById('editServiceName').value = currentName;
-            document.getElementById('editServicePrice').value = currentPrice;
+            $('editServiceName').value = currentName;
+            $('editServicePrice').value = currentPrice;
             showModal('editModal', 'editModalContent');
         }
 
         async function submitEdit(event) {
             event.preventDefault(); 
-            const newName = document.getElementById('editServiceName').value;
-            const newPrice = document.getElementById('editServicePrice').value;
 
             try {
-                // Đóng gói thông tin mới và gửi lên Server
-                const response = await fetch(`/service/edit/${currentEditId}`, {
+                // ĐÃ SỬA: Đổi đường dẫn thành /api/service/ theo chuẩn RESTful API
+                const response = await fetch(`/api/service/${currentEditId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ serviceName: newName, price: newPrice })
+                    body: JSON.stringify({ 
+                        serviceName: $('editServiceName').value, 
+                        price: $('editServicePrice').value 
+                    })
                 });
 
                 if (response.ok) {
                     closeModals();
-                    // Thành công thì F5 lại trang để lấy dữ liệu mới
                     window.location.reload(); 
                 } else {
-                    alert("Cập nhật thất bại!");
+                    alert("Cập nhật thất bại. Vui lòng kiểm tra lại!");
                 }
             } catch (error) {
                 console.error(error);

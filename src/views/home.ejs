@@ -205,7 +205,6 @@
       <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
       <div class="flex justify-center items-center gap-2 mb-8">
           <% 
-            // Tạo chuỗi truy vấn (query) nếu đang tìm kiếm để gắn vào link phân trang
             const searchParam = locals.searchQuery ? `&search=${locals.searchQuery}` : '';
           %>
           
@@ -297,115 +296,94 @@
     </div>
 
     <script>
-        let currentServiceId = null;
-        let currentDeleteId = null;
-        let currentEditId = null; 
+    // 1. Hàm rút gọn siêu tốc
+    const $ = id => document.getElementById(id);
+    
+    // 2. Chỉ cần 1 biến để lưu ID của dịch vụ đang thao tác
+    let activeId = null;
 
-        function showModal(modalId, contentId) {
-            const modal = document.getElementById(modalId);
-            const content = document.getElementById(contentId);
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-            setTimeout(() => {
-                modal.classList.remove("opacity-0");
-                content.classList.remove("scale-95");
-            }, 10);
-        }
+    function showModal(modalId, contentId) {
+        $(modalId).classList.replace("hidden", "flex");
+        setTimeout(() => {
+            $(modalId).classList.remove("opacity-0");
+            $(contentId).classList.remove("scale-95");
+        }, 10);
+    }
 
-        function closeModals() {
-            ['imageModal', 'confirmModal', 'deleteModal', 'editModal'].forEach(id => {
-                const modal = document.getElementById(id);
-                if (!modal) return; 
-                const content = document.getElementById(id + 'Content');
-                modal.classList.add('opacity-0');
-                content.classList.add('scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                }, 300);
-            });
-        }
-        
-        function openImageModal(imgUrl, serviceName) {
-            document.getElementById("modalImgTag").src = imgUrl;
-            document.getElementById("modalImageTitle").innerText = "Hóa đơn: " + serviceName;
-            showModal("imageModal", "imageModalContent");
-        }
+    function closeModals() {
+        ['imageModal', 'confirmModal', 'deleteModal', 'editModal'].forEach(id => {
+            if (!$(id)) return;
+            $(id).classList.add('opacity-0');
+            $(id + 'Content').classList.add('scale-95');
+            // Dùng replace để đổi class nhanh hơn remove/add
+            setTimeout(() => $(id).classList.replace('flex', 'hidden'), 300); 
+        });
+    }
+    
+    // --- CÁC HÀM MỞ HỘP THOẠI ---
+    function openImageModal(imgUrl, name) {
+        $("modalImgTag").src = imgUrl;
+        $("modalImageTitle").innerText = "Hóa đơn: " + name;
+        showModal("imageModal", "imageModalContent");
+    }
 
-        function openConfirmModal(id, serviceName) {
-            currentServiceId = id;
-            document.getElementById("confirmServiceName").innerText = serviceName;
-            showModal("confirmModal", "confirmModalContent");
-        }
+    function openConfirmModal(id, name) {
+        activeId = id;
+        $("confirmServiceName").innerText = name;
+        showModal("confirmModal", "confirmModalContent");
+    }
 
-        async function submitPayment() {
-            try {
-                const response = await fetch(`/service/pay/${currentServiceId}`, {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                if (response.ok) {
-                    closeModals();
-                    window.location.reload(); 
-                } else alert("Có lỗi xảy ra khi cập nhật Database!");
-            } catch (error) {
-                alert("Không thể kết nối đến máy chủ.");
-            }
-        }
+    function openDeleteModal(id, name) {
+        activeId = id;
+        $('deleteServiceName').innerText = name;
+        showModal('deleteModal', 'deleteModalContent');
+    }
 
-        function openDeleteModal(id, serviceName) {
-            currentDeleteId = id;
-            document.getElementById('deleteServiceName').innerText = serviceName;
-            showModal('deleteModal', 'deleteModalContent');
-        }
+    function openEditModal(id, name, price) {
+        activeId = id;
+        $('editServiceName').value = name;
+        $('editServicePrice').value = price;
+        showModal('editModal', 'editModalContent');
+    }
 
-        async function submitDelete() {
-            try {
-                const response = await fetch(`/service/${currentDeleteId}`, { method: 'DELETE' });
-                if (response.ok) {
-                    const row = document.getElementById(`service-row-${currentDeleteId}`);
-                    if (row) {
-                        row.classList.add('opacity-0', '-translate-x-full'); 
-                        setTimeout(() => row.remove(), 300);
-                    }
-                    closeModals(); 
-                } else alert("Có lỗi xảy ra khi xóa trong Database!");
-            } catch (error) {
-                alert("Không thể kết nối đến máy chủ.");
-            }
-        }
-
-        // HÀM MỞ HỘP THOẠI CHỈNH SỬA (Đã bổ sung)
-        function openEditModal(id, currentName, currentPrice) {
-            currentEditId = id;
-            document.getElementById('editServiceName').value = currentName;
-            document.getElementById('editServicePrice').value = currentPrice;
-            showModal('editModal', 'editModalContent');
-        }
-
-        async function submitEdit(event) {
-            event.preventDefault(); 
+    // --- TỐI ƯU HÓA: HÀM GỌI API CHUNG ---
+    async function handleApi(url, method, body = null, onSuccess = () => window.location.reload()) {
+        try {
+            const options = { method, headers: { 'Content-Type': 'application/json' } };
+            if (body) options.body = JSON.stringify(body);
             
-            const newName = document.getElementById('editServiceName').value;
-            const newPrice = document.getElementById('editServicePrice').value;
-
-            try {
-                const response = await fetch(`/service/edit/${currentEditId}`, {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ serviceName: newName, price: newPrice })
-                });
-
-                if (response.ok) {
-                    closeModals();
-                    window.location.reload(); 
-                } else {
-                    alert("Cập nhật thất bại!");
-                }
-            } catch (error) {
-                alert("Lỗi kết nối máy chủ.");
-            }
+            const response = await fetch(url, options);
+            if (response.ok) {
+                closeModals();
+                onSuccess(); // Tự động F5 trang, hoặc chạy hiệu ứng xóa dòng
+            } else alert("Thao tác thất bại. Vui lòng kiểm tra lại!");
+        } catch (error) {
+            alert("Không thể kết nối đến máy chủ.");
         }
-    </script>
+    }
+
+    // --- CÁC NÚT BẤM BÂY GIỜ CHỈ CÒN NHƯ THẾ NÀY ---
+
+    // Thanh toán
+    const submitPayment = () => handleApi(`/api/service/pay/${activeId}`, 'PUT');
+
+    // Chỉnh sửa
+    const submitEdit = (e) => {
+        e.preventDefault(); 
+        handleApi(`/api/service/${activeId}`, 'PUT', {
+            serviceName: $('editServiceName').value,
+            price: $('editServicePrice').value
+        });
+    };
+
+    // Xóa (Có thêm hiệu ứng trượt mất dòng siêu mượt)
+    const submitDelete = () => handleApi(`/api/service/${activeId}`, 'DELETE', null, () => {
+        const row = $(`service-row-${activeId}`);
+        if (row) {
+            row.classList.add('opacity-0', '-translate-x-full'); 
+            setTimeout(() => row.remove(), 300);
+        }
+    });
+</script>
   </body>
 </html>

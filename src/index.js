@@ -20,8 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const store = new MongoDBStore({
-    uri: 'mongodb://127.0.0.1:27017/subtracker_db',
+const store = new MongoDBStore({    uri: 'mongodb://127.0.0.1:27017/subtracker_db',
     collection: 'sessions' 
 });
 
@@ -30,7 +29,7 @@ store.on('error', function(error) {
 });
 // cấu hình session
 app.use(session({
-    secret: 'ma-hoa-123',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     store: store, 
@@ -38,7 +37,7 @@ app.use(session({
         maxAge: 24 * 60 * 60 * 1000, 
         secure: false 
     }
-}));
+}))
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user || null;

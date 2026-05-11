@@ -1,11 +1,19 @@
 const express = require("express");
+
 const router = express.Router();
 
+// đn, đk, hs
 const userRouter = require('./userRouter');
+
+// trang chủ làm vc với dv
 const siteRouter = require('./siteRouter');
 
-// Bất cứ link nào khách gõ, đưa cho cả 2 xem, ai xử lý được thì xử lý
+
+// xửa lý khi vào link đn, đk
 router.use('/', userRouter);
+
+// sẽ sử lý khi vào link dv
 router.use('/', siteRouter);
+
 
 module.exports = router;

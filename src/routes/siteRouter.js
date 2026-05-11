@@ -4,22 +4,29 @@ const serviceController = require("../controllers/serviceController");
 const homeController = require('../controllers/homeController');
 const upload = require('../helpers/multer_helper');
 
-// Trang chủ
-router.get("/", homeController.displayService);
 
-// Thêm dịch vụ
+
+router.get("/", homeController.getHomePage); 
+
+// trang + dv
 router.get("/add-service", (req, res) => res.render("add-service"));
-router.post('/add-service', upload.single('QRCode'), serviceController.createService);
 
-// Thanh toán và Xóa
-router.post('/service/pay/:id', serviceController.payService);
-router.delete('/service/:id', serviceController.deleteService);
-
-// Thông báo
-router.get("/notification", (req, res) => res.render("notification"));
-
-module.exports = router; // Đóng gói mang ra ngoài
-
-// Xem chi tiết một dịch vụ dựa trên ID
+// xem chi tiết
 router.get('/service/:id', serviceController.getServiceDetail);
-router.put('/service/edit/:id', serviceController.updateService);
+
+// xửa lý dữ liệu
+
+// tạo mới dv
+router.post('/api/service', upload.single('QRCode'), serviceController.createService);
+
+// cập nhập dv
+router.put('/api/service/:id', serviceController.updateService);
+
+// pay dv
+router.put('/api/service/pay/:id', serviceController.payService);
+
+// xóa dv
+router.delete('/api/service/:id', serviceController.deleteService);
+
+// đóng gói
+module.exports = router;

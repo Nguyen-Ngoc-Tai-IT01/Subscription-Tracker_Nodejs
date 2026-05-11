@@ -1,7 +1,7 @@
 const Service = require("../models/Servece"); 
 
 exports.processDisplay = async (userId, searchQuery, page, limit) => {
-  // Lấy toàn bộ để tính thẻ thống kê
+  // lấy toàn bộ để tính thẻ thống kê
   const allServices = await Service.find({ userId: userId });
 
   const globalTotalExpense = allServices.reduce((sum, item) => sum + item.price, 0);
@@ -17,15 +17,21 @@ exports.processDisplay = async (userId, searchQuery, page, limit) => {
       new Date(item.nextPaymentDate) <= next3Days
   ).length;
 
-  // Tìm kiếm và phân trang
+  // tìm kiếm và phân trang
   let queryFilter = { userId: userId };
   if (searchQuery) {
     queryFilter.serviceName = { $regex: searchQuery, $options: "i" };
   }
 
   const totalMatching = await Service.countDocuments(queryFilter);
+
+  // sắp xếp các gói
   const myService = await Service.find(queryFilter)
-    .sort({ createdAt: -1 })
+    .sort({ 
+        status: -1,           // ưu tiên chưa thanh toán lên hàng đầu
+        nextPaymentDate: 1,   // ưu tiên hạn thanh toán
+        createdAt: -1         // nếu trùng đk gói nào tạo ra sau đưa lên trước
+    })
     .skip((page - 1) * limit)
     .limit(limit);
 
