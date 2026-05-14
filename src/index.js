@@ -46,4 +46,11 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 
+
+// sử lý khi không tìm thấy trang
+app.use((req, res, next) => {
+    res.status(404).render('404'); 
+});
+
+
 module.exports = app;

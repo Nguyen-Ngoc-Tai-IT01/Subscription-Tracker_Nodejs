@@ -2,25 +2,25 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 
+const authMiddleware = require('../middlewares/auth'); 
 
 // đn
 router.get("/sign_in", (req, res) => res.render("sign_in"));
-
 // đk
 router.get("/sign_up", (req, res) => res.render("sign_up"));
 
-router.get("/profile", (req, res) => res.render("profile"));
-
-
-// sửa lý đn, đk
+// Xử lý gửi form Đăng nhập / Đăng ký
 router.post("/sign_in", userController.loginUser);
 router.post("/sign_up", userController.createUser);
 
-// đăng xuất
-router.post('/logout', userController.logoutUser);
+// hồ sơ
+router.get("/profile", authMiddleware.requireLogin, (req, res) => res.render("profile"));
+
+// dăng xuất
+router.post('/logout', authMiddleware.requireLogin, userController.logoutUser);
 
 // cập nhập hồ sơ
-router.put("/api/profile", userController.updateProfile);
+router.put("/api/profile", authMiddleware.requireLogin, userController.updateProfile);
 
-// đóng gói
+
 module.exports = router;

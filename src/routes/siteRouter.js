@@ -3,30 +3,31 @@ const router = express.Router();
 const serviceController = require("../controllers/serviceController");
 const homeController = require('../controllers/homeController');
 const upload = require('../helpers/multer_helper');
+const authMiddleware = require('../middlewares/auth');
 
-
+// trang chủ
 
 router.get("/", homeController.getHomePage); 
 
-// trang + dv
-router.get("/add-service", (req, res) => res.render("add-service"));
+// dịch vụ
+router.get("/add-service", authMiddleware.requireLogin, (req, res) => res.render("add-service"));
 
-// xem chi tiết
-router.get('/service/:id', serviceController.getServiceDetail);
+// chi tiết một dv
+router.get('/service/:id', authMiddleware.requireLogin, serviceController.getServiceDetail);
 
-// xửa lý dữ liệu
+// sửa lý dữ liệu
 
 // tạo mới dv
-router.post('/api/service', upload.single('QRCode'), serviceController.createService);
+router.post('/api/service', authMiddleware.requireLogin, upload.single('QRCode'), serviceController.createService);
 
-// cập nhập dv
-router.put('/api/service/:id', serviceController.updateService);
+// Cập nhật dịch vụ
+router.put('/api/service/:id', authMiddleware.requireLogin, serviceController.updateService);
 
-// pay dv
-router.put('/api/service/pay/:id', serviceController.payService);
+// Thanh toán dịch vụ
+router.put('/api/service/pay/:id', authMiddleware.requireLogin, serviceController.payService);
 
-// xóa dv
-router.delete('/api/service/:id', serviceController.deleteService);
+// Xóa dịch vụ
+router.delete('/api/service/:id', authMiddleware.requireLogin, serviceController.deleteService);
 
-// đóng gói
+
 module.exports = router;

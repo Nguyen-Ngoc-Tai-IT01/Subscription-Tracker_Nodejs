@@ -14,10 +14,10 @@ const serviceSchema = new mongoose.Schema({
 		trim: true
 	},
 	price: {
-		type: Number,
-		require: true,
-		trim: true
-	},
+        type: Number,
+        required: true, 
+        min: 0          
+    },
 	billingCycle: {
 		type: String,
 		required: true,

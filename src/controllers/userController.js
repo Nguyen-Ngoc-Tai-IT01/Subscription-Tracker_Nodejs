@@ -68,27 +68,35 @@ exports.loginUser = async (req, res) => {
 
 // cập nhật 
 exports.updateProfile = async (req, res) => {
-	const {username, phone, birthDate} = req.body
-	try {
-		const userId = req.session.user.id
+    try {
+        const userId = req.session.user.id; 
+        const { username, phone, birthDate } = req.body; // Dữ liệu từ form
 
-		await User.findByIdAndUpdate(userId, {
-			username: username,
-			phone: phone,
-			birthDate: birthDate,
-		})
+        // cập nhập vào mongoDB
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { username, phone, birthDate },
+            { new: true } 
+        );
 
-		req.session.user.username = username
-		req.session.user.phone = phone
-		req.session.user.birthDate = birthDate
+        req.session.user.username = updatedUser.username;
+        req.session.user.phone = updatedUser.phone;
+        req.session.user.birthDate = updatedUser.birthDate;
 
-		res.redirect('/profile')
-	} catch (error) {
-		console.log(error);
-        res.render('profile', { errorMessage: 'Không thể cập nhật hồ sơ' });
-	}
-}
+        req.session.save((err) => {
+            if (err) {
+                console.error("Lỗi lưu session:", err);
+                return res.status(500).json({ message: "Lỗi đồng bộ dữ liệu" });
+            }
+            
+            return res.status(200).json({ message: "Cập nhật thành công!" });
+        });
 
+    } catch (error) {
+        console.log("Lỗi cập nhật hồ sơ:", error);
+        res.status(500).json({ message: "Lỗi hệ thống!" });
+    }
+};
 // đăng xuất
 exports.logoutUser = (req, res) => {
 	// hủy session hiện tại
