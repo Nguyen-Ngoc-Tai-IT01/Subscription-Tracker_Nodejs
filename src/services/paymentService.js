@@ -1,4 +1,4 @@
-const Service = require("../models/Servece");
+const Service = require("../models/Service");
 
 exports.processPayment = async (serviceId) => {
   const service = await Service.findById(serviceId);

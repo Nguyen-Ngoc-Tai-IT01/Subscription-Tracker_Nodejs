@@ -9,8 +9,9 @@ router.get("/sign_in", (req, res) => res.render("sign_in"));
 // đk
 router.get("/sign_up", (req, res) => res.render("sign_up"));
 
-// Xử lý gửi form Đăng nhập / Đăng ký
+// Xử lý gửi form đn 
 router.post("/sign_in", userController.loginUser);
+// đk
 router.post("/sign_up", userController.createUser);
 
 // hồ sơ

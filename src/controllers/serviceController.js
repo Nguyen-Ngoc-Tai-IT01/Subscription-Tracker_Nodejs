@@ -1,4 +1,4 @@
-const Service = require("../models/Servece");
+const Service = require("../models/Service");
 const fs = require("fs");
 const path = require("path");
 
