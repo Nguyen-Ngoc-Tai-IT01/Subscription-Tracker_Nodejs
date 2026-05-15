@@ -1,0 +1,67 @@
+# 📊 SubTracker - Ứng dụng Quản lý Dịch vụ Trả phí
+
+SubTracker là một ứng dụng web (Web Application) được phát triển nhằm giúp người dùng cá nhân quản lý, theo dõi và nhận cảnh báo về các khoản chi phí đăng ký dịch vụ định kỳ (Netflix, Spotify, iCloud, v.v.).
+
+## 🚀 Công nghệ sử dụng
+
+- **Backend:** Node.js, ExpressJS
+- **Frontend:** EJS (Template Engine), CSS Framework (Tailwind / Bootstrap)
+- **Database:** MongoDB (Mongoose)
+- **Bảo mật:** Bcrypt (Mã hóa mật khẩu), JWT & Cookie (Xác thực)
+- **Tiện ích:** Joi (Validation), Multer (Upload file), Dotenv, Morgan, Nodemon
+
+## ✨ Tính năng chính
+
+- **Xác thực người dùng:** Đăng ký, đăng nhập an toàn với JWT và mật khẩu được băm (Bcrypt).
+- **Quản lý dịch vụ (CRUD):** Thêm, xem, sửa, xóa các gói dịch vụ trả phí cá nhân.
+- **Dashboard thống kê:** Tổng hợp chi phí hàng tháng/năm một cách trực quan.
+- **Cảnh báo thông minh:** Nổi bật các dịch vụ sắp đến hạn thanh toán (dưới 3 ngày).
+- **Lưu trữ minh chứng:** Hóa đơn và hình ảnh được quản lý qua Multer.
+
+## ⚙️ Hướng dẫn cài đặt và chạy dự án
+
+### 1. Yêu cầu hệ thống
+
+- Đã cài đặt [Node.js](https://nodejs.org/)
+- Đã cài đặt [MongoDB](https://www.mongodb.com/try/download/community)
+
+### 2. Cài đặt
+
+Clone dự án về máy và cài đặt thư viện:
+
+```bash
+npm install
+```
+
+### 3. Cấu hình biến môi trường
+
+Tạo file `.env` ở thư mục gốc và cấu hình các thông số:
+
+```env
+PORT=3000
+MONGODB_URI=mongodb://127.0.0.1:27017/subtracker_db
+JWT_SECRET=your_secret_key
+```
+
+### 4. Khởi chạy
+
+```bash
+npm run dev
+```
+
+## 📁 Cấu trúc thư mục (Chuẩn MVC)
+
+```text
+src
+├── models          # Schema MongoDB
+├── controllers     # Xử lý logic
+├── views           # Giao diện EJS
+├── routes          # Định tuyến
+└── public          # File tĩnh (CSS, Images)
+```
+
+## 👨‍💻 Tác giả
+
+- **Họ và tên:** Nguyễn Ngọc Tài
+- **Lớp:** IT24B
+- **Trường:** Đại học Đông Á
