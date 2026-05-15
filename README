@@ -1,67 +1,81 @@
 # 📊 SubTracker - Ứng dụng Quản lý Dịch vụ Trả phí
 
-SubTracker là một ứng dụng web (Web Application) được phát triển nhằm giúp người dùng cá nhân quản lý, theo dõi và nhận cảnh báo về các khoản chi phí đăng ký dịch vụ định kỳ (Netflix, Spotify, iCloud, v.v.).
+SubTracker là một ứng dụng web được phát triển nhằm hỗ trợ người dùng cá nhân quản lý, theo dõi và kiểm soát các khoản thanh toán định kỳ cho những dịch vụ trả phí như Netflix, Spotify, iCloud, YouTube Premium, v.v.
 
-## 🚀 Công nghệ sử dụng
+Ứng dụng giúp người dùng tránh quên hạn thanh toán, theo dõi tổng chi phí hằng tháng và quản lý các hóa đơn dịch vụ một cách thuận tiện.
 
-- **Backend:** Node.js, ExpressJS
-- **Frontend:** EJS (Template Engine), CSS Framework (Tailwind / Bootstrap)
-- **Database:** MongoDB (Mongoose)
-- **Bảo mật:** Bcrypt (Mã hóa mật khẩu), JWT & Cookie (Xác thực)
-- **Tiện ích:** Joi (Validation), Multer (Upload file), Dotenv, Morgan, Nodemon
+---
 
-## ✨ Tính năng chính
+# 🚀 Công nghệ sử dụng
 
-- **Xác thực người dùng:** Đăng ký, đăng nhập an toàn với JWT và mật khẩu được băm (Bcrypt).
-- **Quản lý dịch vụ (CRUD):** Thêm, xem, sửa, xóa các gói dịch vụ trả phí cá nhân.
-- **Dashboard thống kê:** Tổng hợp chi phí hàng tháng/năm một cách trực quan.
-- **Cảnh báo thông minh:** Nổi bật các dịch vụ sắp đến hạn thanh toán (dưới 3 ngày).
-- **Lưu trữ minh chứng:** Hóa đơn và hình ảnh được quản lý qua Multer.
+## Backend
+- Node.js
+- Express.js
 
-## ⚙️ Hướng dẫn cài đặt và chạy dự án
+## Frontend
+- EJS (Embedded JavaScript Templates)
+- Bootstrap / Tailwind CSS
 
-### 1. Yêu cầu hệ thống
+## Database
+- MongoDB
+- Mongoose
 
-- Đã cài đặt [Node.js](https://nodejs.org/)
-- Đã cài đặt [MongoDB](https://www.mongodb.com/try/download/community)
+## Authentication & Security
+- JWT (JSON Web Token)
+- Cookie Parser
+- Bcrypt (Mã hóa mật khẩu)
 
-### 2. Cài đặt
+## Utilities & Libraries
+- Joi (Validation dữ liệu)
+- Multer (Upload hình ảnh/hóa đơn)
+- Dotenv
+- Morgan
+- Nodemon
 
-Clone dự án về máy và cài đặt thư viện:
+---
+
+# ✨ Tính năng chính
+
+## 👤 Xác thực người dùng
+- Đăng ký tài khoản
+- Đăng nhập / đăng xuất
+- Mã hóa mật khẩu bằng Bcrypt
+- Xác thực người dùng bằng JWT và Cookie
+
+## 📦 Quản lý dịch vụ đăng ký
+- Thêm dịch vụ mới
+- Xem danh sách dịch vụ
+- Cập nhật thông tin dịch vụ
+- Xóa dịch vụ đã hủy
+
+## 📊 Dashboard thống kê
+- Thống kê tổng chi phí theo tháng
+- Thống kê tổng chi phí theo năm
+- Hiển thị danh sách dịch vụ đang hoạt động
+
+## ⏰ Cảnh báo thanh toán
+- Thông báo các dịch vụ sắp đến hạn thanh toán
+- Hỗ trợ nhắc nhở trước số ngày quy định
+
+## 🖼️ Quản lý hóa đơn
+- Upload hình ảnh hóa đơn
+- Lưu trữ minh chứng thanh toán bằng Multer
+
+---
+
+# ⚙️ Hướng dẫn cài đặt và chạy dự án
+
+## 1. Yêu cầu hệ thống
+
+Cần cài đặt trước:
+
+- [Node.js](https://nodejs.org/)
+- [MongoDB Community Server](https://www.mongodb.com/try/download/community)
+
+Kiểm tra phiên bản:
 
 ```bash
-npm install
+node -v
+npm -v
+mongod --version
 ```
-
-### 3. Cấu hình biến môi trường
-
-Tạo file `.env` ở thư mục gốc và cấu hình các thông số:
-
-```env
-PORT=3000
-MONGODB_URI=mongodb://127.0.0.1:27017/subtracker_db
-JWT_SECRET=your_secret_key
-```
-
-### 4. Khởi chạy
-
-```bash
-npm run dev
-```
-
-## 📁 Cấu trúc thư mục (Chuẩn MVC)
-
-```text
-src
-├── models          # Schema MongoDB
-├── controllers     # Xử lý logic
-├── views           # Giao diện EJS
-├── routes          # Định tuyến
-└── public          # File tĩnh (CSS, Images)
-```
-
-## 👨‍💻 Tác giả
-
-- **Họ và tên:** Nguyễn Ngọc Tài
-- **Lớp:** IT24B
-- **Trường:** Đại học Đông Á
